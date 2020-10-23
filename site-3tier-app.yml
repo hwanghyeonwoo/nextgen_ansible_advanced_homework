@@ -7,27 +7,27 @@
 
 
 - name: setup load-balancer tier
-  hosts: frontends
+  hosts: load_balancers
   become: yes
   roles:
     - {name: base-config, tags: base-config}
-    - {name: lb-tier, tags: [load_balancers, haproxy]}
+    - {name: lb-tier, tags: [lbs,haproxy]}
 
 # Setup application servers tier
 
 - name: setup app tier
-  hosts: apps
+  hosts: app_servers
   become: yes
   gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
-    - {name: app-tier, tags: [app_servers, flask]}
+    - {name: app-tier, tags: [apps,flask]}
 
 # Setup database tier
 
 - name: setup database tier
   become: yes
-  hosts: appdbs
+  hosts: database_servers
   roles:
     - {name: base-config, tags: base-config}
-    - {name: db-tier, tags: [database_servers, postgres]}
+    - {name: db-tier, tags: [dbs,postgres]}
