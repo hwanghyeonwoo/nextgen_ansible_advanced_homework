@@ -26,4 +26,4 @@
     server: frontend
     network: ext_network
     wait: true
-    timeout: 200i
+    timeout: 200
