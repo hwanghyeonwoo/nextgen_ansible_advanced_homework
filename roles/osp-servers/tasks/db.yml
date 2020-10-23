@@ -3,7 +3,7 @@
     cloud: openstack
     name: db
     image: rhel-guest
-    key_name: ansible_ssh_key
+    key_name: ansible_ssh
     flavor: m1.medium
     security_groups: db
     delete_fip: yes
