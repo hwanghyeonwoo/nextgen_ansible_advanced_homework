@@ -2,7 +2,7 @@
   os_server:
     cloud: openstack
     name: frontend
-    image: rhel-7.6
+    image: rhel-guest
     key_name: ansible_ssh_key
     flavor: m1.medium
     security_groups: frontend
