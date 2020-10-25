@@ -1,4 +1,9 @@
 ---
+- name: Copy repo file
+  copy:
+    src: internal.repo
+    dest: /etc/yum.repos.d/internal.repo
+
 - name: Install Postgres packages
   package:
     name: "{{ __package }}"
