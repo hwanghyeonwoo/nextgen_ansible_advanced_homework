@@ -2,6 +2,15 @@
   gather_facts: true
   roles:
   - name: osp-facts
+  
+# Setup database tier
+
+- name: setup database tier
+  become: yes
+  hosts: dbs
+  roles:
+    - {name: base-config, tags: base-config}
+    - {name: db-tier, tags: [dbs,postgres]}
 
 # Setup front-end load balancer tier
 
@@ -22,11 +31,4 @@
     - {name: base-config, tags: base-config}
     - {name: app-tier, tags: [apps,flask]}
 
-# Setup database tier
 
-- name: setup database tier
-  become: yes
-  hosts: dbs
-  roles:
-    - {name: base-config, tags: base-config}
-    - {name: db-tier, tags: [dbs,postgres]}
