@@ -4,19 +4,19 @@
     src: internal.repo
     dest: /etc/yum.repos.d/internal.repo
 
-- name: Install load balancer packages
-  package:
-    name: "{{ load_balancer_packages }}"
-    state: present
+- name: install HAProxy
+  yum:
+    name: haproxy 
+    state: latest
 
-- name: Configure haproxy load balancing
-  template:
-    src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-  notify: restart_haproxy
-
-- name: Enable Haproxy
+- name: start and enable HAProxy
   service:
     name: haproxy
     state: started
-    enabled: true
+    enabled: yes
+
+- name: configure haproxy
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify: HAproxy_restart
