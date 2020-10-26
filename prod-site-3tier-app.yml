@@ -10,11 +10,11 @@
 # Setup front-end load balancer tier
 
 - name: setup load-balancer tier
-  hosts: frontend
+  hosts: frontends
   become: yes
   roles:
     - {name: base-config, tags: base-config}
-    - {name: lb-tier, tags: [frontend,haproxy]}
+    - {name: lb-tier, tags: [frontends,haproxy]}
 
 # Setup application servers tier
 
